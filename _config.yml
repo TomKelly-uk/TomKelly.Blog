@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Tom Kelly Blog
+title: Power Platform Development
 
 # Your name to show in the footer
 author: Tom Kelly
@@ -136,11 +136,11 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-page-col: "#FDFCF5"
+page-col: "#E8E5DA"
 text-col: "#3B4A3F"
 link-col: "#6B8E7A"
 hover-col: "#4F6F5A"
-navbar-col: "#E8E5DA"
+navbar-col: "#6B8E7A"
 navbar-text-col: "#3B4A3F"
 navbar-border-col: "#CFCBBE"
 footer-col: "#E8E5DA"
