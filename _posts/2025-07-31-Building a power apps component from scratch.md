@@ -7,14 +7,14 @@ We will build out a simple component that has been styled to look exactly like a
 
 We will break this down into the following stages to follow along:
 
-0. [[#0. System setup|System Setup]]
+0. [System Setup](#SystemSetup)
 1. [[#1. Creating your project|Creating your project]]
 2. Building your component
 3. Deploying your component
 4. Using your component
 
 
-## 0.   System setup
+## 0.   System setup {#SystemSetup}
 
 Before you start any development, we will first need the right tools. If you have done this before, you can skip this step, though I recommend running through just to make sure.
 
