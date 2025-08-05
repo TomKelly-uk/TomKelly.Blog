@@ -22,7 +22,7 @@ The worst thing is to get part way through following along, only to realise it�
 
 Here is a snapshot of our final result, so you can better understand where we are in the process.
 
-![A screenshot of a computer screen AI-generated content may be incorrect.](media/e57d08b1a14990039c45eba1b829d0f2.png)
+![Final-pa-flow.png](https://tomkelly.uk/assets/img/Onboarding%20Users/Final-pa-flow.png)
 
 ### The trigger
 
@@ -30,9 +30,9 @@ Something I’m always keeping in mind when doing this type of work is to strike
 
 We do this by having our automation trigger at the exact point of someone being set as “Hired” in the system. That way as soon as the recruiter has completed their part in the process, it immediately creates the user.
 
-![A screenshot of a computer screen AI-generated content may be incorrect.](media/f4045ab506abc65917e50ee8797a6573.png)
+![Trigger - 1.png](https://tomkelly.uk/assets/img/Onboarding%20Users/1-trigger.png)
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/3b93c18f706b1ad27facc876c185b4ca.png)
+![Trigger - 2.png](https://tomkelly.uk/assets/img/Onboarding%20Users/1-trigger2.png)
 
 This ofcourse is completely based on your scenario and organisation, so you may want to adapt this.
 
@@ -42,14 +42,14 @@ To prevent duplication or potentially user error, it is always necessary to put 
 
 First, it’s best practice for us to create (initialise) a variable of the proposed new username, for future use. If we ever need to concatenate together multiple times, we should really be using a variable.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/35a654696eeea28543c157ecc692eb1c.png)
+![2-check-user-exists.png](https://tomkelly.uk/assets/img/Onboarding%20Users/2-check-user-exists.png)
 
 Similarly, for role since in Model driven apps you get the integer value of choice fields as opposed to the text value. A manual formula is needed to pull out the text value as I have used here:  
- triggerOutputs()?['body/_tk_rolebeinghiredfor_label']
+ `triggerOutputs()?['body/_tk_rolebeinghiredfor_label']`
 
 Next we will use our Entra connector to check that the new hire does not already have that username. This is really simple now that we have already created our variable, as you can see we only need to feed in our proposed email address as the username.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/8e55366aeafd2ce159c89c09922d4357.png)
+![2-check-user-exists2.png](https://tomkelly.uk/assets/img/Onboarding%20Users/2-check-user-exists2.png)
 
 From here we can then decide what do to based on whether the user exists or not. If it does exists, we will go into our error notifications next. If it does not, we will create the user and assign licenses.
 
@@ -59,7 +59,7 @@ Taking your system from good to a great if often the little things, like keeping
 
 Especially when it’s as simple as adding in an ‘Office 365 outlook’ action to send an email and filling in the details.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/cf1da80c2fca816c1f26db53634e2a8f.png)
+![3-error-notifications.png](https://tomkelly.uk/assets/img/Onboarding%20Users/3-error-notifications.png)
 
 Its worth noting, if you want to take this to the next level as I mentioned at the start we want to alter our users day to day as little as possible. So we could even adapt this setup to also auto-create cases for the IT team to investigate or email IT to investigate.
 
@@ -67,11 +67,11 @@ Its worth noting, if you want to take this to the next level as I mentioned at t
 
 Alternatively, if the user does not already exist, let us get on with creating that user. To do this we want to add a parallel branch and use the ‘Microsoft Entra ID’ connector with the ‘Create User’ action, as below.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/b5b843865be94570dc2cccf6f52af670.png)
+![4-create-user-1.png](https://tomkelly.uk/assets/img/Onboarding%20Users/4-create-user-1.png)
 
 For us to get this to trigger when we know the user does not already exist, we need to configure it to run after the user check as failed.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/0d6077a6d39ab9857f6d4e030e1b59d9.png) ![A screenshot of a computer AI-generated content may be incorrect.](media/d53a4e98bb64280cd6539dc9ee1da72a.png)
+![4-create-user-2.png](https://tomkelly.uk/assets/img/Onboarding%20Users/4-create-user-2.png)![4-create-user-3.png](https://tomkelly.uk/assets/img/Onboarding%20Users/4-create-user-3.png)
 
 Its worth noting, when creating the user:
 
@@ -85,7 +85,7 @@ Its worth noting, when creating the user:
   
   - It is not perfect and it could be done completely randomly with some variables and loops, but for an initial password to be reset it does the job well.
     
-    substring(replace(base64(utcNow()), '=', ''), 0, 16)
+   `substring(replace(base64(utcNow()), '=', ''), 0, 16)`
 
 ### Apply licenses
 
@@ -99,29 +99,29 @@ Therefore, we need to approach it differently. We will be
 
 When creating our security group, we added the prefix of “Role – “ so that it can be clearly identified as a role based security group. A security group was used rather than a Microsoft 365 group or similar, as there is no need for teams integration or mailbox access – this is purely for license assignment. You can see the chosen roles below.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/95851589dda74fbf1735f643f9e9f512.png)
+![5-apply-licenses-1.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-1.png)
 
 Applying the licence to that group is done through the Billing \> Licenses \> Groups.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/2d6e863fe6f4414f928c8fe3a2d4f512.png)
+![5-apply-licenses-2.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-2.png)
 
 That’s out security groups and licenses configured! So back into our Flow.
 
 In order to add our user to the correct group, we first need to get the ‘Group ID’. We can do this by using the ‘Office 365 Groups’ connector and the ‘List Groups’ action. As a general rule, we always want to reduce the amount of work that the flow needs to do, so we will filter the action to just look for the specific role that we are interested in. Here we filtered it from the ‘Role’ dropdown in the initial model driven app trigger.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/a32f0b21427ed6702447865e21c3ca13.png)
+![5-apply-licenses-3.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-3.png)
 
 *Something I always like to do is to use a ‘Compose’ action and print out the output and look at the outputted JSON. This helps me familiarise myself with what we are processing and gives me the confidence that I am getting the correct record. That is also how we found out which field to filter.*
 
 Now that we have the Group ID, we can go ahead and add the user to that group to get our licenses. We do this by using the Microsoft Entra ID connector and the ‘Add user to group’ action, feeding in the group ID and user ID (from the create user step). Because we used the ‘Group ID’, it will automatically add this into an ‘Apply to each’ loop for you.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/496ea6247d2df253422b40d60a2216fb.png)
+![5-apply-licenses-4.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-4.png)
 
 …just don’t make the same mistake I did and mix up ‘Group ID’ and user Id. That was 20 minutes debugging well spent.
 
 From here our new user will get added to the appropriate group and get the appropriate licenses applied for their role.
 
-![A screenshot of a computer AI-generated content may be incorrect.](media/2e13e4e5f73b45edae9609b787bfbaf5.png)
+![5-apply-licenses-5.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-5.png)
 
 ### Success Notification
 
