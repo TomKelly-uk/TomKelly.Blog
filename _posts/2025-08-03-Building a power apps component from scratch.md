@@ -7,14 +7,14 @@ We will build out a simple component that has been styled to look exactly like a
 
 We will break this down into the following stages to follow along:
 
-0. [System Setup](#SystemSetup)
-1. [Creating your project](#CreateProject)
-2. [Building your component](#Building)
-3. [Deploying your component](#Deploying)
-4. [Using your component](#Usage)
-5. [Quick Reference Guide](#Reference)
+1. [System Setup](#SystemSetup)
+2. [Creating your project](#CreateProject)
+3. [Building your component](#Building)
+4. [Deploying your component](#Deploying)
+5. [Using your component](#Usage)
+6. [Quick Reference Guide](#Reference)
 
-## 0.   System setup {#SystemSetup}
+## 1.   System setup {#SystemSetup}
 
 Before you start any development, we will first need the right tools. If you have done this before, you can skip this step, though I recommend running through just to make sure.
 
@@ -44,7 +44,7 @@ Before you start any development, we will first need the right tools. If you hav
   - [Browse all .NET versions to download](https://dotnet.microsoft.com/en-us/download/dotnet?cid=getdotnetcorecli)
   - This will help us later deploy our solution.
 
-## 1. Creating your project {#CreateProject}
+## 2. Creating your project {#CreateProject}
 
 Now that we have installed all the tools above, creating the project itself is straightforward. We will be building it from a template with a few commands.
 
@@ -80,7 +80,7 @@ Now that we have installed all the tools above, creating the project itself is s
 
 We should use this command all throughout this guide to both confirm our changes as well as confirm we haven’t broken made a mistake and broken something.
 
-## 2. Building your component {#Building}
+## 3. Building your component {#Building}
 
 Now that we have our template created, we can move onto building the component logic and styling. This aspect of the process will differ a lot more depending on the type of component we are creating, but we will run through this below.
 
@@ -409,7 +409,7 @@ This is how we have done it in our component:
 
 ![2 - Building your component - css 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20css%204.png)
 
-## 3. Deploying your component {#Deploying}
+## 4. Deploying your component {#Deploying}
 
 And that’s it! Our component is built, all we need to do is deploy it. Since we have already installed all of the prerequisites in step 0, it can be done in these 6 quick steps:
 
@@ -493,7 +493,7 @@ After a minute or so, you should be greeted with a notification.
 
 And that’s it! Our custom build component, now in power apps.
 
-## 4. Using your component {#Usage}
+## 5. Using your component {#Usage}
 
 Now that our component is in the system let us run through actually applying it to the fields as intended. 
 
@@ -512,7 +512,7 @@ Which disappears when text is input:
 
 ![4 - Using your component - after 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after%202.png)
 
-## 4. Quick Reference Guide {#Reference}
+## 6. Quick Reference Guide {#Reference}
 
 Presuming you have already read the full guide and just looking back for a quick reference, here is what we need to do to build a component. 
 
