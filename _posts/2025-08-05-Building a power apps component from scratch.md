@@ -257,33 +257,42 @@ This is the function that runs once when the component is first created, before 
 This is the setup function that is called when the component is loaded into power apps, like the constructor for the UI and behaviour. It creates the initial container, event listeners, initial data and UI – so its super important.
 
 In our component, we have split it up into six main parts:
-1.      Receiving the necessary resources
+1. Receiving the necessary resources
+
 ![2 - Building your component - init.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%201.png)
 
-2.      Variable creation
+2. Variable creation
+
 ![2 - Building your component - init 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%202.png)
 
-3.      Create the user interface
+3. Create the user interface
+
 ![2 - Building your component - init 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%203.png)
 
-4.      Set up event handling
+4. Set up event handling
+
 ![2 - Building your component - init 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%204.png)
 
-5.      Add UI elements to the page
+5. Add UI elements to the page
+
 ![2 - Building your component - init 5.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%205.png)
 
-6.      Initialise with the above changes
+6. Initialise with the above changes
+
 ![2 - Building your component - init 6.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%206.png)
 
 #### updateView
 This function handles any data updates in the component, it is responsible for keeping our component UI in sync with the underlying data. We have 3 main elements to our function:
-1.      Receive the updated data
+1. Receive the updated data
+
 ![2 - Building your component - updateView.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView.png)
 
-2.      Update local variables with the updated data
+2. Update local variables with the updated data
+
 ![2 - Building your component - updateView 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%202.png)
 
-3.      Update the UI with the data from the local variables
+3. Update the UI with the data from the local variables
+
 ![2 - Building your component - updateView 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%203.png)
 
 #### getOutputs
@@ -362,6 +371,7 @@ And that’s it! Our component is built, all we need to do is deploy it. Since w
 
 #### Build the component
 This can be done by simply running the command ‘npm run build’ inside your Visual Studio Terminal. 
+
 ![3 - Deploying your component - css 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20npm%20build.png)
 
 This compiles our typescript code into a deployable format. Any errors you have in your .ts file will appear at this point.
@@ -440,6 +450,7 @@ Here is a before and after of our component, once our changes have been publishe
 ![4 - Using your component - before.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20before.png)![4 - Using your component - after.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after.png)
 
 Which disappears when text is input:
+
 ![4 - Using your component - after 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after%202.png)
 
 ## 4. Quick Reference Guide {#Reference}
