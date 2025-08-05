@@ -13,18 +13,18 @@ The worst thing is to get part way through following along, only to realise it�
 
 ## What we are going to do
 
-1. **Set the trigger**
-2. **Check the user exists**
-3. **Set up error notifications**
-4. **Create user**
-5. **Apply licenses**
-6. **Success notification**
+1. [**Set the trigger**](#Trigger)
+2. [**Check the user exists**](#CheckUserExists)
+3. [**Set up error notifications**](#ErrorNotifications)
+4. [**Create user**](#CreateUser)
+5. [**Apply licenses**](#ApplyLicenses)
+6. [**Success notification**](#SuccessNotification)
 
 Here is a snapshot of our final result, so you can better understand where we are in the process.
 
 ![Final-pa-flow.png](https://tomkelly.uk/assets/img/Onboarding%20Users/Final-pa-flow.png)
 
-### The trigger
+### The trigger {#Trigger}
 
 Something I’m always keeping in mind when doing this type of work is to strike that balance of complete automation and manual intervention. We want our solution to interrupt users day-to-day workflow as little as possible, that way it will never be missed.
 
@@ -36,7 +36,7 @@ We do this by having our automation trigger at the exact point of someone being 
 
 This ofcourse is completely based on your scenario and organisation, so you may want to adapt this.
 
-### Check the user exists
+### Check the user exists {#CheckUserExists}
 
 To prevent duplication or potentially user error, it is always necessary to put some kind of **error catch**. In such cases, we should be **letting our users know** that this process didn’t happen – otherwise our users may start to lose faith in the system, should it not perform how they expect it to.
 
@@ -53,7 +53,7 @@ Next we will use our Entra connector to check that the new hire does not already
 
 From here we can then decide what do to based on whether the user exists or not. If it does exists, we will go into our error notifications next. If it does not, we will create the user and assign licenses.
 
-### Set up error notifications
+### Set up error notifications {#ErrorNotifications}
 
 Taking your system from good to a great if often the little things, like keeping users informed. That’s why we want to be adding in error notifications.
 
@@ -63,7 +63,7 @@ Especially when it’s as simple as adding in an ‘Office 365 outlook’ action
 
 Its worth noting, if you want to take this to the next level as I mentioned at the start we want to alter our users day to day as little as possible. So we could even adapt this setup to also auto-create cases for the IT team to investigate or email IT to investigate.
 
-### Create User
+### Create User {#CreateUser}
 
 Alternatively, if the user does not already exist, let us get on with creating that user. To do this we want to add a parallel branch and use the ‘Microsoft Entra ID’ connector with the ‘Create User’ action, as below.
 
@@ -87,7 +87,7 @@ Its worth noting, when creating the user:
     
    `substring(replace(base64(utcNow()), '=', ''), 0, 16)`
 
-### Apply licenses
+### Apply licenses {#ApplyLicenses}
 
 Automatically applying the licenses is a frustrating, because it is a process that should be simpler and completely integrated within a connector – but at the time of writing this is not possible (without additional cost for azure function apps or PowerShell connectors).
 
@@ -123,7 +123,7 @@ From here our new user will get added to the appropriate group and get the appro
 
 ![5-apply-licenses-5.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-5.png)
 
-### Success Notification
+### Success Notification {#SuccessNotification}
 
 Finally, we should always be keeping our users informed of changes that are happening. So let us notify them that the new user has been created, just like we did previously using the ‘Office 365 outlook’ connector to send an email.
 
