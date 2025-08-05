@@ -33,7 +33,7 @@ Before you start any development, we will first need the right tools. If you hav
 	- You will need to reboot your machine after this
 
 - Download and install .NET
-	- [Browse all .NET versions to download | .NET](https://dotnet.microsoft.com/en-us/download/dotnet?cid=getdotnetcorecli)
+	- [Browse all .NET versions to download](https://dotnet.microsoft.com/en-us/download/dotnet?cid=getdotnetcorecli)
 	- This will help us later deploy our solution.
 
 ## 1. Creating your project {#CreateProject}
@@ -121,7 +121,7 @@ Those two properties together is what uniquely identifies your component.
 
 |  Property   |Description     |
 | --- | --- |
-|  Version   |   Does what it says on the tin  |
+|  **Version**   |   Does what it says on the tin  |
 |  **Display-name-key**   |  This is a reference to the component name displayed in Power Apps, it cannot contain any spaces. The actual text can be edited in a separate .resx file, likely in a /strings/ folder.   |
 |  **Description-key**   |   This is a reference to the component description that is displayed in Power Apps, it cannot contain any spaces. The actual text can be edited in a separate .resx file, likely in a /strings/ folder.  |
 |  **Control-type**   |  this defines what type of component you will be making. Here it is standard, which is most common and is a visual control. Other types are virtual and dataset, which are non visual; used for logic or data manipulation and dataset; for lists/tables of data, respectively.   |
@@ -145,11 +145,11 @@ A property is required to be made up of the following:
 
 | Property    |  Description   |
 | --- | --- |
-|   Name  |     |
-|  **Display-name-key**   |     |
-|  **Description-key**   |     |
-|  **Of-type**   |   This defines what type of data the property holds. This could be: <ul><li>SingleLine.Text</li><li>Whole.None</li><li>Decimal.None</li><li>TwoOptions</li><li>Currenty.None</li><li>Lookup.Simple</li></ul> |
-|  **Usage**   |  This tells power apps how the data is obtained. This could be: <ul><li>**Input** – The value is set in the configurable power apps properties</li><li>**Output**  - Value is sent back to the app, for example a calculated result.</li><li>**Bound** – Linked to a datasource, such as a column in a table. There can only be one bound property per component.</li><li>**Global** – Shared across all instances of the component.</li><li>**Required** – A true/false property. Defines if this property much be set for the component to work.</li></ul>  |
+| Name  |     |
+| **Display-name-key**   |     |
+| **Description-key**   |     |
+| **Of-type**   | This defines what type of data the property holds. This could be: <ul><li>SingleLine.Text</li><li>Whole.None</li><li>Decimal.None</li><li>TwoOptions</li><li>Currenty.None</li><li>Lookup.Simple</li></ul> |
+| **Usage**   | This tells Power Apps how the data is obtained. This could be: <ul><li><strong>Input</strong> – The value is set in the configurable Power Apps properties</li><li><strong>Output</strong> – Value is sent back to the app, for example a calculated result.</li><li><strong>Bound</strong> – Linked to a datasource, such as a column in a table. There can only be one bound property per component.</li><li><strong>Global</strong> – Shared across all instances of the component.</li><li><strong>Required</strong> – A true/false property. Defines if this property must be set for the component to work.</li></ul> |
 
 Some optional properties are:
 
@@ -258,34 +258,32 @@ This is the setup function that is called when the component is loaded into powe
 
 In our component, we have split it up into six main parts:
 1.      Receiving the necessary resources
-
 ![2 - Building your component - init.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%201.png)
+
 2.      Variable creation
-
 ![2 - Building your component - init 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%202.png)
+
 3.      Create the user interface
-
 ![2 - Building your component - init 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%203.png)
+
 4.      Set up event handling
-
 ![2 - Building your component - init 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%204.png)
+
 5.      Add UI elements to the page
-
 ![2 - Building your component - init 5.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%205.png)
-6.      Initialise with the above changes
 
+6.      Initialise with the above changes
 ![2 - Building your component - init 6.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%206.png)
 
 #### updateView
 This function handles any data updates in the component, it is responsible for keeping our component UI in sync with the underlying data. We have 3 main elements to our function:
 1.      Receive the updated data
-
 ![2 - Building your component - updateView.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView.png)
+
 2.      Update local variables with the updated data
-
 ![2 - Building your component - updateView 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%202.png)
-3.      Update the UI with the data from the local variables
 
+3.      Update the UI with the data from the local variables
 ![2 - Building your component - updateView 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%203.png)
 
 #### getOutputs
@@ -355,17 +353,17 @@ This is how we have done it in our component:
 
 ## 3. Deploying your component {#Deploying}
 And that’s it! Our component is built, all we need to do is deploy it. Since we have already installed all of the prerequisites in step 0, it can be done in these 6 quick steps:
-1.      Build the component
-2.      Create the publisher
-3.      Create the solution
-4.      Add the component to the solution
-5.      Pack the solution
-6.      Import the solution into Power Apps
+1. Build the component
+2. Create the publisher
+3. Create the solution
+4. Add the component to the solution
+5. Pack the solution
+6. Import the solution into Power Apps
 
 #### Build the component
 This can be done by simply running the command ‘npm run build’ inside your Visual Studio Terminal. 
-
 ![3 - Deploying your component - css 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20npm%20build.png)
+
 This compiles our typescript code into a deployable format. Any errors you have in your .ts file will appear at this point.
 
 #### Create the publisher
@@ -404,6 +402,7 @@ This should now crate a zip file inside of your solution folder\bin\Debug\.
 
 If you have issues running the msbuild command, you can try directly referencing the MSBuild.exe as a workaround:
 ![3 - Deploying your component - pack solution 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20pack%20solution%203.png)
+
 Though I would recommend adding it to the PATH environment variable, so that it can be used going forward. This can be done by:
 
 - Right clicking on ‘Computer’ in your file explorer
@@ -431,6 +430,7 @@ Now that our component is in the system let us run through actually applying it 
 
 This is all done inside the power apps maker portal. This is done in the form editor by simply by selecting your field that you would like to apply the component to, then adding the component from the properties bar. 
 ![4 - Using your component - add component.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20add%20component.png)
+
 If your component does not appear in the list, try selecting ‘Get more components’.
 
 Once applied, we should have the option to edit the placeholder. These inputs should be familiar from when we defined them in our XML file.
@@ -440,7 +440,6 @@ Here is a before and after of our component, once our changes have been publishe
 ![4 - Using your component - before.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20before.png)![4 - Using your component - after.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after.png)
 
 Which disappears when text is input:
-
 ![4 - Using your component - after 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after%202.png)
 
 ## 4. Quick Reference Guide {#Reference}
