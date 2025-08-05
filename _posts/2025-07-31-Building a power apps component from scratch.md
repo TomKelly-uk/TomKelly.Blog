@@ -63,7 +63,8 @@ Now that we have installed all the tools above, creating the project itself is s
 	   `Npm start`
 
   - We can now see the bare bones beginning of what will become our component. It doesn’t look like much, but we will build this out in the next section.
-  ![1 - Creating your project - npm start test.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/1%20-%20Creating%20your%20project%20-%20npm%20start%20test.png)
+
+![1 - Creating your project - npm start test.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/1%20-%20Creating%20your%20project%20-%20npm%20start%20test.png)
 
 We should use this command all throughout this guide to both confirm our changes as well as confirm we haven’t broken made a mistake and broken something.
 
@@ -71,6 +72,7 @@ We should use this command all throughout this guide to both confirm our changes
 Now that we have our template created, we can move onto building the component logic and styling. This aspect of the process will differ a lot more depending on the type of component we are creating, but we will run through this below.
 
 If we haven’t already **opened the component** environment itself in VS Code, we should do this now. You will know this if you can see something similar to the following in a left hand pane of the application:
+
 ![2 - Building your component - Component files.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20Component%20files.png)
 
 To open it up, in CMD make sure you are in your component folder and type `Code .` (don’t forget the dot!). 
@@ -107,6 +109,7 @@ This is the root tag that contains everything, defining it as a manifest file.
 
 #### `<Control>`
 ![2 - Building your component - Control.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20Control.png)
+
 This control tag essential defines what the component is called, it contains couple of different important properties as follows:
 
 | Property    |  Description   |
@@ -125,6 +128,7 @@ Those two properties together is what uniquely identifies your component.
 
 #### `<Resources>`
 ![2 - Building your component - Resources.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20Resources.png)
+
 This tag points us in the direction of our pots and pans needed to complete the recipe. Pointing our component to the files needed to work as expected. Including CSS files, Typescript or JavaScript files, other images or font assets etc. Like a shopping list for our recipe.
 
 Different tags would be used based on the type for resource, for example here we are using `<code>` and `<css>`. We may also want to use `<image>`, `<font>`, `<resource>` (for other generic files such as JSON, SVG etc.) 
@@ -133,8 +137,10 @@ The order may also be altered to control when each of the different resources lo
 
 #### `<Property>`
 If we were to keep with the recipe analogy, our property would be our ingredients. Property tags define the inputs and outputs of our component; what data we have to work with. For example in our component we defined 2 properties, one column input and another placeholder text.
+
 ![2 - Building your component - propertypng](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20property.png)
 ![2 - Building your component - property 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20property%202.png)
+
 A property is required to be made up of the following:
 
 | Property    |  Description   |
@@ -157,6 +163,7 @@ Some optional properties are:
 #### `<events>`
 Events are the cooking timers that tell us how long everything needs cooking for. They define the signal that the component will send to the power app when an action happens, for example a click of a button or changing a value. We haven’t build this component with events in the XML file (we put ours in the .ts file), but here is an example of what it may look like if we did.
 ![2 - Building your component - events 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20events.png)
+
 At this point, the properties shown are self explanatory. By putting this in our XML file, we are defining the event – essentially letting our power app know that it may receive an event like this in our component. This will then later be triggered in our TypeScript code.
 
 The following tags are used in more specific scenarios and will not be in our example. But I will run through them  so that we are aware, but briefly because I’m getting hungry with all this recipe talk.
@@ -182,6 +189,7 @@ Here is an example manifest of the two options to help solidify this:
 
 #### `<usage>`
 This tag tells Power Apps where your component is allowed to be used, in a canvas app or model driven app. This is optional and if it is not specified, it is assumed that the component is available everywhere. However, best practice would be to specify this. Here is an example of what this should look like:
+
 ![2 - Building your component - usage.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20usage.png)
 
 #### `<accessibility>`
@@ -189,6 +197,7 @@ This tag is used to declare what accessibility features your component supports.
 
 To best support this, we should:
 - Declare this tag in our manifest as shown
+
 ![2 - Building your component - accessibility.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20accessibility.png)
 - Ensure any HTML is using meaningful tags that are recognised by screen readers such as `<button>`, `<label>`,`<input>`, instead of `<div onclick="...">`, `<span>`, `<div contenteditable>`
 - Use ARIA (Accessible Rich Internet Applications) attributes to help screen readers understand our component’s structure and behaviour 
@@ -202,7 +211,7 @@ This tag allows us to opt into preview capabilities that Microsoft is testing an
 Here is an example of what it may look like to apply this tag:
 ![2 - Building your component - experimental features.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20experimental%20features.png)
 
-That covers our manifest XML file and you feel confident in everything that makes up our component so far. If you want more information on any of this, feel free to take a look at the MS learn page: [Power Apps component framework manifest schema reference - Power Apps | Microsoft Learn](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/manifest-schema-reference/)
+That covers our manifest XML file and you feel confident in everything that makes up our component so far. If you want more information on any of this, feel free to take a look at the MS learn page: [Microsoft Power Platform Schema Reference](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/manifest-schema-reference/)
 
 **That was a lot, so lets get a cup of tea before we move onto the TypeScript part of the build.**
 
@@ -224,19 +233,24 @@ Our .ts file is made up of nine parts:
 
 #### Import statement
 ![2 - Building your component - import.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20import.png)
+
 This brings in the inputs and outputs from a file that is automatically generated (with npm run build) based on our ControlManifest.xml file. For example, as you saw previously our xml file has 2 property definitions `ColumnInput` and `placeholder`, so our generated file that we are importing contains the following:
+
 ![2 - Building your component - import 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20import%202.png)
 
 #### Class definition
 ![2 - Building your component - class.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20class.png)
+
 This export statement defines the name of our component class, in this case `PreambleTextField`. This tells Power Apps that it is a standard control that uses Input and Output types. It must match the constructor definition in the xml manifest file.
 
 #### Private variables
 ![2 - Building your component - private var.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20private%20var.png)
+
 Inside this class we will define our private variables. The essential of these being the top `_container`, this stores the HTML container where your component will be displayed. Those afterwards are just used for component logic.
 
 #### Constructor
 ![2 - Building your component - constructor.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20constructor.png)
+
 This is the function that runs once when the component is first created, before anything is displayed or initialised. It could be used to set up default internal values, logging, etc. Or it could be left empty and setup completed in the init function below.
 
 #### Init
@@ -244,34 +258,46 @@ This is the setup function that is called when the component is loaded into powe
 
 In our component, we have split it up into six main parts:
 1.      Receiving the necessary resources
+
 ![2 - Building your component - init.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%201.png)
 2.      Variable creation
+
 ![2 - Building your component - init 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%202.png)
 3.      Create the user interface
+
 ![2 - Building your component - init 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%203.png)
 4.      Set up event handling
+
 ![2 - Building your component - init 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%204.png)
 5.      Add UI elements to the page
+
 ![2 - Building your component - init 5.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%205.png)
 6.      Initialise with the above changes
+
 ![2 - Building your component - init 6.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%206.png)
 
 #### updateView
 This function handles any data updates in the component, it is responsible for keeping our component UI in sync with the underlying data. We have 3 main elements to our function:
 1.      Receive the updated data
+
 ![2 - Building your component - updateView.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView.png)
 2.      Update local variables with the updated data
+
 ![2 - Building your component - updateView 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%202.png)
 3.      Update the UI with the data from the local variables
+
 ![2 - Building your component - updateView 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%203.png)
 
 #### getOutputs
 This function is what is called when Power apps retrieves data from your components and saves it to the underlying database.
+
 ![2 - Building your component - getOutputs.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20getOutputs.png)
 
 #### Input Change Events – onInputChange
 This custom defined function is called from an event listener in the init() function when a user types into the input control. It responds to a user input by capturing the user input, storing it locally before triggering Power Apps to call getOutputs() to save the data.
+
 ![2 - Building your component - onInputChange.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20onInputChange.png)
+
 Here is the event listener inside the init function:
 ![2 - Building your component - onInputChange 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20onInputChange%202.png)
 
@@ -291,9 +317,13 @@ This can be done in 3 simple steps:
 CSS (Cascading Style Sheet) is a language that describes how various HTML elements should look. For example making certain elements bold with a border, and other italics.  
 
 This can be created anywhere, but it is best practice to create a ‘css’ folder in your component folder and create the file there. In our case, we have created a file called ‘PreambleTextField.css’.
+
 ![2 - Building your component - css.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20css.png)
+
 Here is an example of the CSS we used for our component:
+
 ![2 - Building your component - css 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20css%202.png)
+
 The intention of this CSS was to make it look as close as possible to the standard Microsoft text box as possible. What this CSS is showing us is that any HTML element defined in our typescript file with the class name of ‘preamble-textfield-container’ or ‘ms-style-singleline’, will get those styles applied to them. But first we need to reference the file in our manifest.
 
 If you want to create your own CSS, you can’t go wrong using the [w3 schools website](https://www.w3schools.com/Css/) to start off.
@@ -320,6 +350,7 @@ The element name can be whatever you want, but “YourElement” has to be a hml
 - select
 
 This is how we have done it in our component:
+
 ![2 - Building your component - css 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20css%204.png)
 
 ## 3. Deploying your component {#Deploying}
@@ -333,6 +364,7 @@ And that’s it! Our component is built, all we need to do is deploy it. Since w
 
 #### Build the component
 This can be done by simply running the command ‘npm run build’ inside your Visual Studio Terminal. 
+
 ![3 - Deploying your component - css 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20npm%20build.png)
 This compiles our typescript code into a deployable format. Any errors you have in your .ts file will appear at this point.
 
@@ -343,6 +375,7 @@ Before we can create the solution, we must have a publisher. This step can be sk
 - Select ‘Solutions’ in the navigation panel
 - Select ‘New Solution’
 - In the panel on the right hand side, select New publisher
+
 ![3 - Deploying your component - publisher.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20publisher.png)
 - Once created, you can cancel off that panel. 
 
@@ -350,20 +383,25 @@ See [Microsoft documentation](https://learn.microsoft.com/en-us/power-apps/maker
 
 #### Create the solution
 This should be done in a separate folder to keep the project clean from the solution files. Therefore we are going to create a new folder in the parent directory, then create the solution as follows:
+
 ![3 - Deploying your component - create solution.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20create%20solution.png)
 ![3 - Deploying your component - create solution 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20create%20solution%202.png)
+
 These publisher details must match those that we created previously.
 
 #### Add the component to the solution
 The following command links your component to your newly created solution:
 ![3 - Deploying your component - create solution 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20create%20solution%203.png)
+
 This should be done within your newly created solution folder and point to your project component we built earlier.
 
 #### Pack the solution
 By packing our solution, it creates the zip file that we then import into our solution, this can be done by running the following command:
 ![3 - Deploying your component - pack solution.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20pack%20solution.png)
+
 This should now crate a zip file inside of your solution folder\bin\Debug\.
 ![3 - Deploying your component - npm build.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20npm%20build.png)
+
 If you have issues running the msbuild command, you can try directly referencing the MSBuild.exe as a workaround:
 ![3 - Deploying your component - pack solution 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20pack%20solution%203.png)
 Though I would recommend adding it to the PATH environment variable, so that it can be used going forward. This can be done by:
@@ -385,6 +423,7 @@ Now we have our ZIP file, all is left to do is import the solution into our envi
 
 After a minute or so, you should be greeted with a notification.
 ![3 - Deploying your component - import.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/3%20-%20Deploying%20your%20component%20-%20import.png)
+
 And that’s it! Our custom build component, now in power apps.
 
 ## 4. Using your component {#Usage}
@@ -396,9 +435,12 @@ If your component does not appear in the list, try selecting ‘Get more compone
 
 Once applied, we should have the option to edit the placeholder. These inputs should be familiar from when we defined them in our XML file.
 ![4 - Using your component - edit component.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20edit%20component.png)
+
 Here is a before and after of our component, once our changes have been published.
 ![4 - Using your component - before.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20before.png)![4 - Using your component - after.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after.png)
+
 Which disappears when text is input:
+
 ![4 - Using your component - after 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/4%20-%20Using%20your%20component%20-%20after%202.png)
 
 ## 4. Quick Reference Guide {#Reference}
