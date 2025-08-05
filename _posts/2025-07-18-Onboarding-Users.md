@@ -115,13 +115,13 @@ In order to add our user to the correct group, we first need to get the ‘Group
 
 Now that we have the Group ID, we can go ahead and add the user to that group to get our licenses. We do this by using the Microsoft Entra ID connector and the ‘Add user to group’ action, feeding in the group ID and user ID (from the create user step). Because we used the ‘Group ID’, it will automatically add this into an ‘Apply to each’ loop for you.
 
-![5-apply-licenses-4.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-4.png)
+![5-apply-licenses-4.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-5.png)
 
 …just don’t make the same mistake I did and mix up ‘Group ID’ and user Id. That was 20 minutes debugging well spent.
 
 From here our new user will get added to the appropriate group and get the appropriate licenses applied for their role.
 
-![5-apply-licenses-5.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-5.png)
+![5-apply-licenses-5.png](https://tomkelly.uk/assets/img/Onboarding%20Users/5-apply-licenses-6.png)
 
 ### Success Notification {#SuccessNotification}
 
