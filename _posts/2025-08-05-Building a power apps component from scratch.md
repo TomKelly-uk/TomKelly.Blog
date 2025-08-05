@@ -143,13 +143,13 @@ If we were to keep with the recipe analogy, our property would be our ingredient
 
 A property is required to be made up of the following:
 
-| Property    |  Description   |
-| --- | --- |
-| Name  |     |
-| **Display-name-key**   |     |
-| **Description-key**   |     |
-| **Of-type**   | This defines what type of data the property holds. This could be: <ul><li>SingleLine.Text</li><li>Whole.None</li><li>Decimal.None</li><li>TwoOptions</li><li>Currenty.None</li><li>Lookup.Simple</li></ul> |
-| **Usage**   | This tells Power Apps how the data is obtained. This could be: <ul><li><strong>Input</strong> – The value is set in the configurable Power Apps properties</li><li><strong>Output</strong> – Value is sent back to the app, for example a calculated result.</li><li><strong>Bound</strong> – Linked to a datasource, such as a column in a table. There can only be one bound property per component.</li><li><strong>Global</strong> – Shared across all instances of the component.</li><li><strong>Required</strong> – A true/false property. Defines if this property must be set for the component to work.</li></ul> |
+| Property             | Description |
+|----------------------|-------------|
+| Name                 |             |
+| **Display-name-key** |             |
+| **Description-key**  |             |
+| **Of-type**          | This defines what type of data the property holds. This could be: <br> - `SingleLine.Text` <br> - `Whole.None` <br> - `Decimal.None` <br> - `TwoOptions` <br> - `Currency.None` <br> - `Lookup.Simple` |
+| **Usage**            | This tells Power Apps how the data is obtained. This could be: <br> - **Input** – The value is set in the configurable Power Apps properties <br> - **Output** – Value is sent back to the app, for example a calculated result. <br> - **Bound** – Linked to a datasource, such as a column in a table. There can only be one bound property per component. <br> - **Global** – Shared across all instances of the component. <br> - **Required** – A true/false property. Defines if this property must be set for the component to work. |
 
 Some optional properties are:
 
@@ -257,41 +257,41 @@ This is the function that runs once when the component is first created, before 
 This is the setup function that is called when the component is loaded into power apps, like the constructor for the UI and behaviour. It creates the initial container, event listeners, initial data and UI – so its super important.
 
 In our component, we have split it up into six main parts:
-1. Receiving the necessary resources
+- Receiving the necessary resources
 
 ![2 - Building your component - init.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%201.png)
 
-2. Variable creation
+- Variable creation
 
 ![2 - Building your component - init 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%202.png)
 
-3. Create the user interface
+- Create the user interface
 
 ![2 - Building your component - init 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%203.png)
 
-4. Set up event handling
+- Set up event handling
 
 ![2 - Building your component - init 4.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%204.png)
 
-5. Add UI elements to the page
+- Add UI elements to the page
 
 ![2 - Building your component - init 5.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%205.png)
 
-6. Initialise with the above changes
+- Initialise with the above changes
 
 ![2 - Building your component - init 6.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20init%206.png)
 
 #### updateView
 This function handles any data updates in the component, it is responsible for keeping our component UI in sync with the underlying data. We have 3 main elements to our function:
-1. Receive the updated data
+- Receive the updated data
 
 ![2 - Building your component - updateView.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView.png)
 
-2. Update local variables with the updated data
+- Update local variables with the updated data
 
 ![2 - Building your component - updateView 2.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%202.png)
 
-3. Update the UI with the data from the local variables
+- Update the UI with the data from the local variables
 
 ![2 - Building your component - updateView 3.png](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/2%20-%20Building%20your%20component%20-%20updateView%203.png)
 
