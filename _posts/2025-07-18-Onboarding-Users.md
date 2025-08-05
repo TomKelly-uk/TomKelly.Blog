@@ -1,24 +1,24 @@
 # Automated User Onboarding
 
-Here I will be running through the process of automating the onboarding of new users, including creating users within Entra, email notifications to HR and custom role based license assignment. Putting a solution like this in place will help you not only make your onboarding process much easier, keep everyone informed, but also put more time back into the hands of those who need it – all whilst making you look like a superstar for making it all happen.
+Here I will be running through the process of automating the onboarding of new users, including creating users within Entra, email notifications to HR and custom role based license assignment. Putting a solution like this in place will help you not only make your onboarding process much easier, keep everyone informed, but also put more time back into the hands of those who need it – all whilst making you look like a superstar for making it all happen.   
 
 ## Prerequisites
 
 The worst thing is to get part way through following along, only to realise it’s not possible for yourself. So here are some prerequisites for the solution:
 
--   Power automate premium
-    -   We will be using some premium connectors
--   Access to Microsoft 365 admin centre groups and licenses
--   Access to a model driven app
+- Power automate premium
+  - We will be using some premium connectors
+- Access to Microsoft 365 admin centre groups and licenses
+- Access to a model driven app
 
 ## What we are going to do
 
-1.  **Set the trigger**
-2.  **Check the user exists**
-3.  **Set up error notifications**
-4.  **Create user**
-5.  **Apply licenses**
-6.  **Success notification**
+1. **Set the trigger**
+2. **Check the user exists**
+3. **Set up error notifications**
+4. **Create user**
+5. **Apply licenses**
+6. **Success notification**
 
 Here is a snapshot of our final result, so you can better understand where we are in the process.
 
@@ -75,13 +75,17 @@ For us to get this to trigger when we know the user does not already exist, we n
 
 Its worth noting, when creating the user:
 
--   Mail Nickname
-    -   This cannot contain any special characters. I just concatenate the first and second names, but you can choose any naming convention you prefer.
--   Password
-    -   This has been set to a basic formula that grabs the current time, encodes it into a string, removes any padding and trims it to 16 characters.
-    -   It is not perfect and it could be done completely randomly with some variables and loops, but for an initial password to be reset it does the job well.
+- Mail Nickname
+  
+  - This cannot contain any special characters. I just concatenate the first and second names, but you can choose any naming convention you prefer.
 
-        substring(replace(base64(utcNow()), '=', ''), 0, 16)
+- Password
+  
+  - This has been set to a basic formula that grabs the current time, encodes it into a string, removes any padding and trims it to 16 characters.
+  
+  - It is not perfect and it could be done completely randomly with some variables and loops, but for an initial password to be reset it does the job well.
+    
+    substring(replace(base64(utcNow()), '=', ''), 0, 16)
 
 ### Apply licenses
 
@@ -89,9 +93,9 @@ Automatically applying the licenses is a frustrating, because it is a process th
 
 Therefore, we need to approach it differently. We will be
 
-1.  Creating a security group inside of Office 365
-2.  Applying the licence to that group
-3.  Adding our new hire to that group via our flow.
+1. Creating a security group inside of Office 365
+2. Applying the licence to that group
+3. Adding our new hire to that group via our flow.
 
 When creating our security group, we added the prefix of “Role – “ so that it can be clearly identified as a role based security group. A security group was used rather than a Microsoft 365 group or similar, as there is no need for teams integration or mailbox access – this is purely for license assignment. You can see the chosen roles below.
 
