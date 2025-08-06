@@ -1,6 +1,6 @@
 Sometimes the out of the box Power Apps components just don’t cut it. Maybe you want a more personalised look that matches your brand, need extra logic that goes beyond the capability of the standard component, or you need to integrate with third-party services. That’s where building your own custom PCF component comes in – it’s easier than you might think!
 
-I’m going to run from start to finish on the whole process together and explain each step in detail, so that you understand the why as well as the how. I also have [a quick reference section at the bottom](#Reference) so that once you’ve read through, if you need the key information you can use this when referring back. Our component example can be found in my github page here.  
+I’m going to run from start to finish on the whole process together and explain each step in detail, so that you understand the why as well as the how. I also have [a quick reference section at the bottom](#Reference) so that once you’ve read through, if you need the key information you can use this when referring back. Our component example can be found in my github page [here](https://github.com/TomKelly-uk/TomKelly.git).  
 
 We will build out a simple component that has been styled to look exactly like an out-of-the-box microsoft component, but with the additional functionality of adding in custom placeholder text before you type. It will look as it does below.
 ![Finished Product](https://tomkelly.uk/assets/img/Building%20a%20power%20apps%20component/Finished%20product.png)
