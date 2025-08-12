@@ -1,7 +1,6 @@
 ---
 layout: page
 title: About me
-head-extra: <script async src="https://www.googletagmanager.com/gtag/js?id=G-DKWG33RST1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-DKWG33RST1');</script>
 <!-- subtitle: --> 
 ---
 
