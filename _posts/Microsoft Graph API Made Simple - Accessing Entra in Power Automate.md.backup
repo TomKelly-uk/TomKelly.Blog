@@ -1,0 +1,129 @@
+## Microsoft Graph API Made Simple: Accessing Entra in Power Automate
+
+Power Automate has over 1,000 connectors, so you'd think you can access any data you need. Right?
+
+Well, not always. While Power Automate is incredibly powerful, it's easy to forget that we're working with cutting edge technology, and that comes with drawbacks. Sometimes the built in connectors don’t expose the specific data you need, or the connector simply doesn't exist yet. That’s where APIs come in.
+
+In this guide, I'll show you how to bypass those limitations using Microsoft Graph API to access user data from Entra ID. You don’t need any prior experience with APIs we'll walk through each step together.
+
+1. [What is an API?](#WhatIsAPI) 
+2. [Anatomy of a HTML method](#HTTPAnatomy)
+3. [Building a HTML request](#Building)
+
+### What is an API? {#WhatIsAPI}
+
+An API is a Application Programming Interface and it is a set of definitions and protocols that enable two different applications to talk to eachother, it enables data to be taken from one system and securely consumed in another. 
+   * For example, our Weather apps don't store the actual weather informaton, it uses an API to request the weather information from a centralised weather provider.*
+
+In our walkthrough, Graph API is Microsofts API that lets us access data across  their apps, such as Entra, Teams, Sharepoint etc. We will be using this API to get user data from Entra, such as account information. file:///C:/Users/thoma/OneDrive/Personal Development/Blog/TomKelly.Blog/_posts/Microsoft Graph API Made Simple - Accessing Entra in Power Automate.md
+
+APIs are used by sending HTTP requests to a specific endpoint, which we will run through below.
+
+### Anatomy of a HTML method {#HTTPAnatomy}
+
+Sending a HTML request is essentially telling the system what kind of action you want to take. It is made up of the following:
+
+- Method
+
+- URL
+
+- Headers
+
+- *Body*
+
+
+
+##### Method
+
+This can be either
+
+- **GET **- Retrieves data from the endpoint
+- **POST **- Sends new data to the endpoint
+- **PUT **- Updates data in the endpoint
+- **PATCH **- Partially updates data in the endpoint
+- **DELETE **- Removes data from the endpoint
+
+##### URL (Endpoint)
+
+This is the address of the API that you want to access. 
+
+For example:
+
+```
+https://graph.microsoft.com/v1.0/users
+```
+
+You will usually find this in the documentation of the API that you are trying to access. 
+
+##### Headers
+
+This carries essential information about the request such as:
+
+- **Authentication** - Used for credentials or tokens or API keys
+
+- **Content-Type** - Tells the endpoint what format you're sending the data in
+
+- **Accept** - Tells the endpoint what format you want a response in
+
+- **Cache-Control** - How long a response is cached
+
+- **Custom headers** - Many APIs expect custom headers, which will be detailed in their documentation
+
+- 
+
+Here is an example header for a GET method:
+
+```
+  Authorization: XXXXXXXXXXXXXXXXXXXXXXXXX
+  Content-Type: application/json
+  Accept: application/json
+```
+
+##### Body
+
+This part of the HTTP request is only used when you send data (POST/PUT) to the endpoint. It contains the actual data that you want to send. 
+
+It can be send in many formats such as Key-valye pairs, XML, raw text. But the most common is JSON.
+
+Ofcouse this is very situational, but if I was to update for example my user record in Entra, my body might look something like this:
+
+```json
+{
+  "displayName": "Tom Kelly",
+  "mailNickname": "tomkelly",
+  "userPrincipalName": "tom.kelly@tomkelly.uk",
+  "accountEnabled": true
+}
+```
+
+### Building a HTML Request {#Building}
+
+In our example we will be trying to retrieve extra information from an Entra user account, but this format could be adapted to any method or API, since it follows the same process we outlined above. 
+
+Here is our request:
+
+- Method - GET
+- URL - https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled
+- Header
+- - Authorization : Bearer ACCESS_TOKEN_GOES_HERE
+- - Accept - application/json
+
+
+
+### Test your HTML Request
+
+
+
+
+
+
+### Troubleshooting FAQ
+##### I can't log into Microsoft Graph API? 
+![Microsoft Graph API Login Error](https://tomkelly.uk/assets/img/Graph API - Accessing Entra in PA/Graph API Sign in Error.png)
+If you have an error like that above, then you need to change the redirect URL for the Graph API app registration. You can do this by:
+1. Log into Entra ID
+2. Open up 'App registrations'
+3. Go to 'Authentication'
+4. Edit the 'Redirect URI' of the 'Web' platform type and enter the URL in the error message. 
+
+![Microsoft Graph API Login Error - Fix](https://tomkelly.uk/assets/img/Graph API - Accessing Entra in PA/Graph API Sign in Error - Fix.png)
