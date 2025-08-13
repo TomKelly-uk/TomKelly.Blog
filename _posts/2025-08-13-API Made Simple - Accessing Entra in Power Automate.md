@@ -1,3 +1,7 @@
+---
+layout: post
+title:  "API Made Simple - Accessing Entra in Power Automate"
+---
 Power Automate has over 1,000 connectors, so you'd think you can access any data you need. Right?
 
 Well, not always. While Power Automate is incredibly powerful, it's easy to forget that we're working with cutting edge technology, and that comes with drawbacks. Sometimes the built in connectors don’t expose the specific data you need, or the connector simply doesn't exist yet. That’s where APIs come in.
