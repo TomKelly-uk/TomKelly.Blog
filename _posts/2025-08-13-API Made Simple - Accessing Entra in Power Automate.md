@@ -67,7 +67,7 @@ Here is an example header for a GET method:
   Content-Type: application/json
   Accept: application/json
 ```
-
+&nbsp;
 ###### Authentication/Authorization
 Authentication can be tricky, but it simple is used to prove the identity of the HTTP reqest to the server. Essentially saying "This is who I am, here is how you can verify me". 
 
