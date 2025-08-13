@@ -1,5 +1,3 @@
-## Microsoft Graph API Made Simple: Accessing Entra in Power Automate
-
 Power Automate has over 1,000 connectors, so you'd think you can access any data you need. Right?
 
 Well, not always. While Power Automate is incredibly powerful, it's easy to forget that we're working with cutting edge technology, and that comes with drawbacks. Sometimes the built in connectors don’t expose the specific data you need, or the connector simply doesn't exist yet. That’s where APIs come in.
@@ -18,7 +16,7 @@ An API is a Application Programming Interface and it is a set of definitions and
 
 * For example, our Weather apps don't store the actual weather informaton, it uses an API to request the weather information from a centralised weather provider.*
 
-In our walkthrough, Graph API is Microsofts API that lets us access data across  their apps, such as Entra, Teams, Sharepoint etc. We will be using this API to get user data from Entra, such as account information. file:///C:/Users/thoma/OneDrive/Personal Development/Blog/TomKelly.Blog/_posts/Microsoft Graph API Made Simple - Accessing Entra in Power Automate.md
+In our walkthrough, Graph API is Microsofts API that lets us access data across  their apps, such as Entra, Teams, Sharepoint etc. We will be using this API to get user data from Entra, such as account information. 
 
 APIs are used by sending HTTP requests to a specific endpoint, which we will run through below.
 
@@ -27,17 +25,13 @@ APIs are used by sending HTTP requests to a specific endpoint, which we will run
 Sending a HTML request is essentially telling the system what kind of action you want to take. It is made up of the following:
 
 - Method
-
 - URL
-
 - Headers
-
-- *Body*
+- Body
 
 ##### Method {#Method}
 
 This can be either
-
 - **GET** - Retrieves data from the endpoint
 - **POST** - Sends new data to the endpoint
 - **PUT** - Updates data in the endpoint
@@ -45,11 +39,9 @@ This can be either
 - **DELETE** - Removes data from the endpoint
 
 ##### URL (Endpoint) {#URL}
-
 This is the address of the API that you want to access. 
 
 For example:
-
 ```
 https://graph.microsoft.com/v1.0/users
 ```
@@ -57,29 +49,23 @@ https://graph.microsoft.com/v1.0/users
 You will usually find this in the documentation of the API that you are trying to access. 
 
 ##### Headers {#Header}
-
 This carries essential information about the request such as:
 
 - **Authentication** - Used for credentials or tokens or API keys
-
 - **Content-Type** - Tells the endpoint what format you're sending the data in
-
 - **Accept** - Tells the endpoint what format you want a response in
-
 - **Cache-Control** - How long a response is cached
-
 - **Custom headers** - Many APIs expect custom headers, which will be detailed in their documentation
 
 Here is an example header for a GET method:
-
 ```
   Authorization: XXXXXXXXXXXXXXXXXXXXXXXXX
   Content-Type: application/json
   Accept: application/json
 ```
 
-###### Authentication/Authorization
 
+###### Authentication/Authorization
 Authentication can be tricky, but it simple is used to prove the identity of the HTTP reqest to the server. Essentially saying "This is who I am, here is how you can verify me". 
 
 There are many types of authorization, but here are the most common that you will see:
@@ -102,7 +88,6 @@ There are many types of authorization, but here are the most common that you wil
    - Obtained in "Identity and Access Management" area of AWS by using the "Acess Key ID" and "Secret Access Key", similar to the bearer token.
 
 ##### Body
-
 This part of the HTTP request is only used when you send data (POST/PUT) to the endpoint. It contains the actual data that you want to send. 
 
 It can be send in many formats such as Key-valye pairs, XML, raw text. But the most common is JSON.
@@ -124,15 +109,16 @@ In our example we will be trying to retrieve extra information from an Entra use
 
 Here is our request:
 
-- **Method **- GET
-- **URL **- https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled
+- **Method** - GET
+- **URL** - `https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled`
 - **Header**
-- - Authorization : Bearer ACCESS_TOKEN_GOES_HERE
-- - Accept - application/json
+  - `Authorization : Bearer ACCESS_TOKEN_GOES_HERE`
+  - `Accept - application/json`
 
 ### Test your HTML Request
 
-We always want to test our requst before implementing it into any system, that way we know the URL and header is correct. There are many tools available to test your HTML request, I'd reccomend ![Postman](https://www.postman.com/) for testing most APIs. 
+We always want to test our requst before implementing it into any system, that way we know the URL and header is correct. There are many tools available to test your HTML request, I'd recommend ![Postman](https://www.postman.com/) for testing most APIs. 
+
 Although if you're using Microsoft Graph API, like we will be i'd reccomend their [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer). All you need to do is login with your Microsoft account and test your request, providing your permissions are set up it should work as expected and you wont need to provide authorization. 
 
 ![Test Component Example](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Test%20Component%20Example.png)
@@ -150,13 +136,13 @@ Now that we have our request, we can use Power Automate to feed the data we rece
 
 ##### Add HTTP Action
 
-![Power Automate - Add HTTP Action](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20-%Add%HTTP%20Action.png)
+![Power Automate - Add HTTP Action](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20-%20Add%20HTTP%20Action.png)
 
 This is the action that will be used to create these requests. A premium license is required to use this connector. 
 
 ##### Input the HTTP parameters
 
-![Power Automate HTTP Parameters](https://tomkelly.uk/assets/img/Graph%20AP%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20HTTP%20Parameters.png)
+![Power Automate HTTP Parameters](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20HTTP%20Parameters.png)
 
 Inside the HTTP connector there are a number of parameters to fill out based on your request. These are as follows:
 
@@ -169,19 +155,15 @@ Inside the HTTP connector there are a number of parameters to fill out based on 
 7. Authentication
 
 ###### URI
-
 This is a required parameter for all requests. We should input exactly as mentioned the URL [previously mentioned](#URL). The phrase URI and URL are used interchangably in this context. 
 
 ###### Method
-
 This is a required parameter for all requests. We should input exactly as mentioned the method [previously mentioned](#Method).
 
 ###### Headers
-
 Here we would input the headers [previously mentioned](#Header), apart from Authorization. This is input later.
 
 ###### Queries
-
 This is an optional parameter that allows us to add additional filters to our URI. 
 For example I could add filters such as 
 
@@ -191,8 +173,9 @@ However, do check documentation for this. Microsoft Graph API expects all parame
 ```https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled&$filter=accountEnabled%20eq%20true&$top=10```
 
 ###### Body
+This parameter is used only when you're sending data in POST, PUT or PATCH requests.
 
-This parameter is used only when you're sending data in POST, PUT or PATCH requests. It contains the data that you would be sending and would vary in the layout depending on where you are sending it. For example it may look something like this:
+It contains the data that you would be sending and would vary in the layout depending on where you are sending it. For example it may look something like this:
 
 ```
 {
@@ -202,7 +185,6 @@ This parameter is used only when you're sending data in POST, PUT or PATCH reque
 ```
 
 ###### Cookie
-
 This parameter is rarely used, but is used to send cookies usually when interacting with web services that rely on session management. It is not something I have used, but if you do it would look something like this:
 
 ![Power Automate Cookie Example.png](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20Cookie%20Example.png)
@@ -210,17 +192,12 @@ This parameter is rarely used, but is used to send cookies usually when interact
 Ofcourse this depends on the cookie you are sending, so check the documentation there. 
 
 ###### Authentication
-
 This parameter can be found in the 'Advanced Parameters' section and gives us the following types:
 
 - Basic
-
 - Client certificate
-
 - Active Directory OAuth
-
 - Raw
-
 - Managed identity
   
   **Basic**
@@ -321,6 +298,7 @@ APIs are not as scary as they seem, and I hope this guide helped simplify the pr
 ##### I can't log into Microsoft Graph API?
 
 ![Microsoft Graph API Login Error](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Graph%20API%20Sign%20in%20Error.png)
+
 If you have an error like that above, then you need to change the redirect URL for the Graph API app registration. You can do this by following these steps:
 
 1. Log into Entra ID
