@@ -13,6 +13,7 @@ In this guide, I'll show you how to bypass those limitations using Microsoft Gra
 3. [Building a HTML request](#Building)
 4. [Create our request in Power Automate](#PowerAutomate)
 5. [Conclusion](#Conclusion)
+6. [Troubleshooting](#Troubleshooting)
 
 ### What is an API? {#WhatIsAPI}
 
