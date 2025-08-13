@@ -30,7 +30,6 @@ Sending a HTML request is essentially telling the system what kind of action you
 - Body
 
 ##### Method {#Method}
-
 This can be either
 - **GET** - Retrieves data from the endpoint
 - **POST** - Sends new data to the endpoint
@@ -64,7 +63,6 @@ Here is an example header for a GET method:
   Accept: application/json
 ```
 
-
 ###### Authentication/Authorization
 Authentication can be tricky, but it simple is used to prove the identity of the HTTP reqest to the server. Essentially saying "This is who I am, here is how you can verify me". 
 
@@ -94,7 +92,7 @@ It can be send in many formats such as Key-valye pairs, XML, raw text. But the m
 
 Ofcouse this is very situational, but if I was to update for example my user record in Entra, my body might look something like this:
 
-```json
+```
 {
   "displayName": "Tom Kelly",
   "mailNickname": "tomkelly",
@@ -170,7 +168,7 @@ For example I could add filters such as
 ![Power Automate - Queries Example](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20-%20Queries%20Example.png)
 
 However, do check documentation for this. Microsoft Graph API expects all parameters to be inside the URI itself. So instead of the above, it would be something like:
-```https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled&$filter=accountEnabled%20eq%20true&$top=10```
+`https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled&$filter=accountEnabled%20eq%20true&$top=10`
 
 ###### Body
 This parameter is used only when you're sending data in POST, PUT or PATCH requests.
