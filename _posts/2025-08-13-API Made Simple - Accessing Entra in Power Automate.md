@@ -10,6 +10,7 @@ In this guide, I'll show you how to bypass those limitations using Microsoft Gra
 2. [Anatomy of a HTML method](#HTTPAnatomy)
 3. [Building a HTML request](#Building)
 4. [Create our request in Power Automate](#PowerAutomate)
+5. [Conclusion](#Conclusion)
 
 ### What is an API? {#WhatIsAPI}
 
@@ -37,11 +38,11 @@ Sending a HTML request is essentially telling the system what kind of action you
 
 This can be either
 
-- **GET **- Retrieves data from the endpoint
-- **POST **- Sends new data to the endpoint
-- **PUT **- Updates data in the endpoint
-- **PATCH **- Partially updates data in the endpoint
-- **DELETE **- Removes data from the endpoint
+- **GET** - Retrieves data from the endpoint
+- **POST** - Sends new data to the endpoint
+- **PUT** - Updates data in the endpoint
+- **PATCH** - Partially updates data in the endpoint
+- **DELETE** - Removes data from the endpoint
 
 ##### URL (Endpoint) {#URL}
 
@@ -83,19 +84,19 @@ Authentication can be tricky, but it simple is used to prove the identity of the
 
 There are many types of authorization, but here are the most common that you will see:
 
-1. Bearer Token
+1. **Bearer Token**
    - Very common, used in tools such as Google API, Microsoft Graph, GitHub etc. 
    - `Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5c...`
    - Obtained using a client ID and client secret, by registering your app with the service. This will then product the token upon request.
-2. API Key
+2. **API Key**
    - Common amongst public and third party APIs
    - `Authorization: ApiKey abc123xyz456`
    - Obtained usually by signing up to the service, going to the developer dashboard and selecting "Generate Token" or similar. 
-3. Basic Authentication
+3. **Basic Authentication**
    - Used in simple system, often legacy or basic admin. Is relatively insecure. 
    - `Authorization: Basic dG9tOnBhc3NXYZ123`
    - Obtained by using your username and password in the request. 
-4. AWS Signature Authentication
+4. **AWS Signature Authentication**
    - Common in amazon web services. 
    - `Authorization: AWS3-HMAC-XYZ123 Credential=XXXX, Signature=XXXX`
    - Obtained in "Identity and Access Management" area of AWS by using the "Acess Key ID" and "Secret Access Key", similar to the bearer token.
@@ -123,9 +124,9 @@ In our example we will be trying to retrieve extra information from an Entra use
 
 Here is our request:
 
-- Method - GET
-- URL - https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled
-- Header
+- **Method **- GET
+- **URL **- https://graph.microsoft.com/v1.0/users?$select=displayName,jobTitle,accountEnabled
+- **Header**
 - - Authorization : Bearer ACCESS_TOKEN_GOES_HERE
 - - Accept - application/json
 
@@ -140,7 +141,7 @@ Once you are happy that the request is working as expected, it's time to build i
 
 ### Creating our request in Power Automate {#PowerAutomate}
 
-Now that we have our request, we can use Power Automate to feed the data we recieve into our other systems or let it guide our automations. Assuming you have build out your trigger, build out your request by:
+Now that we have our request, we can use Power Automate to feed the data we receive into our other systems or let it guide our automations. Assuming you have build out your trigger, build out your request by:
 
 1. Add HTTP Action
 2. Input the HTTP parameters
@@ -169,11 +170,11 @@ Inside the HTTP connector there are a number of parameters to fill out based on 
 
 ###### URI
 
-This is a required perameter for all requests. We should input exactly as mentioned the URL [previously mentioned](#URL). The phrase URI and URL are used interchangably in this context. 
+This is a required parameter for all requests. We should input exactly as mentioned the URL [previously mentioned](#URL). The phrase URI and URL are used interchangably in this context. 
 
 ###### Method
 
-This is a required perameter for all requests. We should input exactly as mentioned the method [previously mentioned](#Method).
+This is a required parameter for all requests. We should input exactly as mentioned the method [previously mentioned](#Method).
 
 ###### Headers
 
@@ -192,6 +193,7 @@ However, do check documentation for this. Microsoft Graph API expects all parame
 ###### Body
 
 This parameter is used only when you're sending data in POST, PUT or PATCH requests. It contains the data that you would be sending and would vary in the layout depending on where you are sending it. For example it may look something like this:
+
 ```
 {
   "displayName": "Tom Kelly",
@@ -210,51 +212,116 @@ Ofcourse this depends on the cookie you are sending, so check the documentation 
 ###### Authentication
 
 This parameter can be found in the 'Advanced Parameters' section and gives us the following types:
+
 - Basic
+
 - Client certificate
+
 - Active Directory OAuth
+
 - Raw
+
 - Managed identity
-
-####### Basic
-Basic, is what it says on the tin. Basic username and password authentication. No more to say on this one.
-
-####### Client certificate
-This uses a digital certificate to prove identity, like a passport. In power automate it gives us the following options:
-- PFX - This is a physical `.pfx` file that contains your public and private key. Should be fed into this field. 
-- Password - The password that protects the .pfx file.
-
-####### Active Directory OAuth
-This is often used to access Microsoft services, or other services in Entra. It uses tokens instead of usernames and passwords, that is confirmed with Entra. In Power automate it gives us the following options:
-- Authority
- - This is the endpoint that Power Automate will send the request to Entra ID to retrieve the access token.
- - This would be `https://login.microsoft.com`
-- Tenant - This is the unique ID of your Azure tennant and can be found in your Graph API app registration overview. 
-- Audience - This is the API that you are calling
- - In our case this would be `https://graph.microsoft.com`
-- Client ID 
- - This is the unique ID of your application, in this case our Graph API application. It can be found in the application overview, just like tenant. 
-- Credential type
- - Secret - Where we input a client secret, found when registering our Entra ID app, or similar. 
- - Certificate - A client certificate, just like the authentication type mentioned above. The .pfx certificate file is input here. 
-
-####### Raw
-This is an option to input all of the authentication headers here manually yourself, without the help of Power Automate. This may be useful for custom authentication or other non standard headers. 
-
-####### Managed identity
-This is is for interacting with other Azure services without having to provide credentials or secrets, as this is handled by Azure automatically. This is very secure, though the target API and the flow must be within an Azure hosted environment that supports managed identity. 
+  
+  **Basic**
+  Basic, is what it says on the tin. Basic username and password authentication. No more to say on this one.
+  
+  **Client certificate**
+  This uses a digital certificate to prove identity, like a passport. In power automate it gives us the following options:
+  
+  - PFX
+    - This is a physical `.pfx` file that contains your public and private key. Should be fed into this field. 
+  - Password 
+    - The password that protects the .pfx file.
+  
+  **Active Directory OAuth**
+  This is often used to access Microsoft services, or other services in Entra. It   uses tokens instead of usernames and passwords, that is confirmed with Entra. In Power automate it gives us the following options:
+  
+  - Authority
+    - This is the endpoint that Power Automate will send the request to Entra ID to retrieve the access token.
+    - This would be `https://login.microsoft.com`
+  - Tenant
+    - This is the unique ID of your Azure tennant and can be found in your Graph API app registration overview. 
+  - Audience 
+    - This is the API that you are calling
+    - In our case this would be `https://graph.microsoft.com`
+  - Client ID
+    - This is the unique ID of your application, in this case our Graph API application. It can be found in the application overview, just like tenant. 
+  - Credential type
+    - Secret 
+      - Where we input a client secret, found when registering our Entra ID app, or similar. 
+    - Certificate
+      - A client certificate, just like the authentication type mentioned above. The .pfx certificate file is input here. 
+  
+  **Raw**
+  This is an option to input all of the authentication headers here manually yourself, without the help of Power Automate. This may be useful for custom authentication or other non standard headers. 
+  
+  **Managed identity**
+  This is is for interacting with other Azure services without having to provide credentials or secrets, as this is handled by Azure automatically. This is very secure, though the target API and the flow must be within an Azure hosted environment that supports managed identity. 
 
 ##### Parse the JSON
 
+So we have our HTTP request running in Power Automate, but we can't do anything with it yet. We still need to parse it so that we can use it. Your HTTP 'body' output likely looks something similar to this:
 
-##### Use in the rest of your flow.
+```json
+"body": {
+        "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users(displayName,jobTitle,accountEnabled)",
+        "@odata.nextLink": "https://graph.microsoft.com/v1.0/users?$select=displayName%2cjobTitle%2caccountEnabled&$filter=accountEnabled+eq+true&$top=5&$skiptoken=RFNwdAoAX",
+        "value": [
+            {
+                "displayName": "Tom Kelly",
+                "jobTitle": null,
+                "accountEnabled": true
+            },
+            {
+                "displayName": "Lynne Robbins",
+                "jobTitle": "Planner",
+                "accountEnabled": true
+            },
+            {
+                "displayName": "Lee Gu",
+                "jobTitle": "Director",
+                "accountEnabled": true
+            },
+            {
+                "displayName": "Adele Vance",
+                "jobTitle": "Retail Manager",
+                "accountEnabled": true
+            },
+            {
+                "displayName": "Patti Fernandez",
+                "jobTitle": "Founder",
+                "accountEnabled": true
+            }
+        ]
+    }
+```
+
+We can do this by using the 'Parse JSON' action in Power Automate, which can be found under 'Data Operations'. This will give us 2 parameters:
+
+- **Content**
+  - Here we will feed it the body of the previous HTTP output. 
+- **Schema**
+  - Here it expects the  schema of your JSON. Which is basically a blueprint of what data the system should expect, so it knows how to deal with it.
+  - If you're like me and don't think its worth learning how to write a schema, just click 'Use sample payload to generate schema' and paste in the output of the HTTP body. 
+  - If you're having errors, check out the troubleshooting [at the bottom](#Troubleshooting).
+
+You can test this by using the 'Compose' action and selecting your columns to output. Once you're finished, it should look something like this:
+
+![Power Automate Final Flow](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20Final%20Flow.png)
+
+### Conclusion {#Conclusion}
+
+So we've ran through what an API is, all the way to implementing one into Power Automate. You are no longer limited by built in connectors, giving you the ability to build more connected systems and processes.
+
+APIs are not as scary as they seem, and I hope this guide helped simplify the process. If you've built something after walking through this or improves a process, let me know - i'd love to hear about it! 
 
 ### Troubleshooting FAQ {#Troubleshooting}
 
 ##### I can't log into Microsoft Graph API?
 
 ![Microsoft Graph API Login Error](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Graph%20API%20Sign%20in%20Error.png)
-If you have an error like that above, then you need to change the redirect URL for the Graph API app registration. You can do this by:
+If you have an error like that above, then you need to change the redirect URL for the Graph API app registration. You can do this by following these steps:
 
 1. Log into Entra ID
 2. Open up 'App registrations'
@@ -310,16 +377,16 @@ You may encounter an issue in parsing your JSON, despite generating a schema fro
                     "accountEnabled"
                 ]
      ```
-   
-   ##### I don't see my content in the dynamic view of power automate?
-   
+
+##### I don't see my content in the dynamic view of power automate?
+
    Sometimes your data won't show up in the dynamic view, especially if your schema is complex. As shown below, where my 'displayName' ang 'jobTitle' content was not appearing.
 
-[Power Automate Dynamic Content Error](https://tomkelly.uk/assets/img/Graph API - Accessing%20Entra%20in%20PA/Power%20Automate%20Dynami%20Content%20Error.png)
+![Power Automate Dynamic Content Error](https://tomkelly.uk/assets/img/Graph%20API%20-%20Accessing%20Entra%20in%20PA/Power%20Automate%20Dynamic%20Content%20Error.png)
 
 Here are some tips to get it working:
 
 1. Run the flow once, so that Power automate can 'see' the data and populate the dynamic content. 
-2. Use expressions, instead of seleting the dynamic content. Select the 'function' and input your expected content.
+2. Use expressions, instead of selecting the dynamic content. Select the 'function' and input your expected content.
    - for example, `items('Apply_to_each')?['displayName']`
 3. Check your Parse JSON Schema
