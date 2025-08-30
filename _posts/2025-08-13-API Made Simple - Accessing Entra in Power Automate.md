@@ -13,6 +13,7 @@ In this guide, I'll show you how to bypass those limitations using Microsoft Gra
 3. [Building a HTML request](#Building)
 4. [Create our request in Power Automate](#PowerAutomate)
 5. [Conclusion](#Conclusion)
+6. [Troubleshooting](#Troubleshooting)
 
 ### What is an API? {#WhatIsAPI}
 
@@ -66,7 +67,7 @@ Here is an example header for a GET method:
   Content-Type: application/json
   Accept: application/json
 ```
-
+&nbsp;
 ###### Authentication/Authorization
 Authentication can be tricky, but it simple is used to prove the identity of the HTTP reqest to the server. Essentially saying "This is who I am, here is how you can verify me". 
 
