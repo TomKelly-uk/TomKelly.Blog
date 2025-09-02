@@ -1,4 +1,7 @@
-# Automated User Onboarding
+---
+layout: post
+title:  "Automated Onboarding: Creating Users and Assigning Licenses"
+---
 
 Here I will be running through the process of automating the onboarding of new users, including creating users within Entra, email notifications to HR and custom role based license assignment. Putting a solution like this in place will help you not only make your onboarding process much easier, keep everyone informed, but also put more time back into the hands of those who need it – all whilst making you look like a superstar for making it all happen.   
 
