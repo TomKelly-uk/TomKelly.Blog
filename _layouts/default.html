@@ -1,7 +1,12 @@
 ---
 layout: base
 ---
+<!DOCTYPE html>
+<html lang="{{ page.language | default: site.language | default: 'en' }}">
 
+  {% include head.html %}
+
+  <body>
 <div class="intro-header"></div>
 
 <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
@@ -23,3 +28,6 @@ layout: base
     </div>
   {% endif %}
 </main>
+{% include text-expand.html %}
+  </body>
+</html>
