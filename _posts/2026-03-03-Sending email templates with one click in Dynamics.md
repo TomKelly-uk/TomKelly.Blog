@@ -1,18 +1,13 @@
 ---
    layout: post
-   title:  "Automating sending email templates from command buttons"
+   title:  "Sending email templates with one click in Dynamics (Using command buttons)"
    date: 2026-03-03
 ---
 
-# Automating sending emails from a command button
-Email templates are a wonderful and great time saver for productivity. However, if you are finding that sending them is a clunky and takes more clicks than it should - this is a potential solution that could help. 
-
-**Problem**
-
+#### Problem
 When looking into how we can better improve the productivity of our staff through email automation, I found that sending emails within Dynamics was actually quite clunky. It required the user to open new windows, input lookup forms and search for email templates. It feels like there should be a better way. 
 
-**Solution**
-
+#### Solution
 This post will outline a possible solution to this problem, allowing the user to send email templates at the click of a button from within the record main form. 
 
 Here we will be sending templated emails to a contact from the click of a command button. Here is how this is going to work:
@@ -20,6 +15,9 @@ Here we will be sending templated emails to a contact from the click of a comman
 2. [Create a custom table to hold the email request](#2-email-request-table)
 3. [Create the flow to trigger on the custom table](#3-creating-the-email-flow)
 4. [Create some JavaScript to create a record in the custom table](#4-javascript-to-create-record-in-custom-table)
+
+Here is the basic flow of the process:
+![Flow chart for how the process works](<../assets/img/Automated emails/Diagram.png>)
 
 Voilà. Let's dive into it. 
 
@@ -29,13 +27,14 @@ Now this part is pretty fun, especially using the modern designer. Its a bit mor
 We do this by:
 - Open up the desired table in make.powerapps
 - Select "Commands" (can be found in the same section as business rules)
-  ![Screenshot of the command button location in make.powerapps](Command_Button.png)
+  ![Screenshot of the command button location in make.powerapps](<../assets/img/Automated emails/Command_Button.png>)
 - Select "New" and "Main form"
 - From here you can have a bit of fun and select your icon, use a dropdown or just a single command.
   - I used a dropdown so that I can send different emails with each dropdown option.
 - Publish it up and have a look!
   - Don't expect it to do anything just yet..
-![Screenshot of the command button on our desired form](Command_Button_Test.png)
+
+![Screenshot of the command button on our desired form](<../assets/img/Automated emails/Command_Button_Test.png>)
 
 We have the bones of our button created now, lets move on to our custom table.
 
@@ -58,13 +57,14 @@ All done? Let's move on.
 The idea of this flow is that it will trigger upon creation of a record in our custom email request table. Using the information gathered from the record it will get the email template and the contact information, Any unnecessary text will be stripped from the template such as HTML formatting. The email will then be sent. 
 
 So the structure is pretty simple:
-  #### Trigger on "Email Requests" table record added
+
+#### Trigger on "Email Requests" table record added
   ![Screenshot of power automate flow trigger based on custom table](<../assets/img/Automated emails/Flow_trigger.png>)
 
-  #### Get information for the email message; email template and recipient contact.
+#### Get information for the email message; email template and recipient contact.
   ![Screenshot of 2 get by row ID actions, one for email template, another for contact](<../assets/img/Automated emails/Flow_get_template_and_contact.png>)
 
-  #### Cleanse the text for the email template Subject and body.
+#### Cleanse the text for the email template Subject and body.
   ![Screenshot of compose actions for both subject and email body](<../assets/img/Automated emails/Flow_text_transformations.png>)
   - This may take some trial and error based on your exact email template. But for me, converting it to xml and then splitting that xml with the xpath function worked a treat. 
     
@@ -72,7 +72,7 @@ So the structure is pretty simple:
     
     - This was done with a simple replace of "Dear " to a concatenation of "Dear " and ```outputs('Get_recipient_contact')?['body/firstname']```. 
 
-  #### Create the email record
+#### Create the email record
   ![Screenshot of action to create a row in the email messages table with custom fields from previous steps](<../assets/img/Automated emails/Flow_create_email_record.png>)
 
   - **Description** and **subject** are used here for the email body and email subject. Those are taken from the previous transformations.
@@ -99,15 +99,16 @@ So the structure is pretty simple:
 
   That should now be your email message created from our template! At this point it should also be visible on your record timeline as a draft.
 
-  #### Sending the email
+#### Sending the email
   Now we just need to send the drafted email. 
+
   ![Screenshot of the power automate action "Perform bound action" set to sending an email](<../assets/img/Automated emails/Flow_send_email.png>)
 
   - This is a bound action in which the row ID should be our drafted email from the prvious step.
   
   - **Item/IssueSend** should be Yes if you want to actually send the email... not sure why you wouldn't. 
 
-  #### Troubleshooting
+#### Troubleshooting
   If you have any issues with not being able to send based on sending an email on behalf of, this is actually a dynamics setting - not a setting on Microsoft 365. It can be found in the personalisation settings in the top right settings cog:
 
   ![Personalisation setting screenshot, Send email on behalf of](<../assets/img/Automated emails/Setting_send_email_on_behalf.png>)
@@ -126,12 +127,12 @@ Here we will be tying it all together by triggering some JavaScript from a comma
 The premise of this JavaScript is simple and split into 1 main function with some helper functions. 
 
 I will run through what each function does, then give you the full code below:
- - sendDropAtCVEmail and sendTIFailedEmail
+ - ```sendDropAtCVEmail``` and ```sendTIFailedEmail```
    - Function immediately called from the command button
    - Passes through the name of the email template
- - delay
+ - ```delay```
    - Do I really need to clarify this? 
- - main
+ - ```main```
    - retrieves all the relevant information needed to create a record in our custom table:
      - email template ID
        - Looks up based on the name provided in the above functions
@@ -171,10 +172,10 @@ async function main(formContext, emailTemplateName) {
 		if (!emailTemplateID) throw new Error(`Email template not found: ${emailTemplateName}`);
 
 		const recordData = {
-			vc_emailtemplateid: emailTemplateID,
-			vc_mailboxuserid: mailboxUserID,
-			vc_recipientcontactid: recipientContactID,
-			vc_regardingrecordid: currentRecordID
+			tk_emailtemplateid: emailTemplateID,
+			tk_mailboxuserid: mailboxUserID,
+			tk_recipientcontactid: recipientContactID,
+			tk_regardingrecordid: currentRecordID
 		};
 	
 		const result = await Xrm.WebApi.createRecord(entityLogicalName, recordData);
@@ -203,7 +204,13 @@ function delay(ms) {
 ### Finish off the command button
 Now that the Javascript is in place, make sure you go back and confirm that the command button is properly linked to our script. 
 
-![Screenshot of the command button library and function call](Command_Button_Confirm_Setup.png)
+![Screenshot of the command button library and function call](<../assets/img/Automated emails/Command_Button_Confirm_Setup.png>)
 
 Ensure that the script is uploaded to the library and the function for that command is set.
 
+## Summary
+So that's it. We should now have a templated email sending from the click of a button from within our form, without the need for hte user to open new windows of search for templated emails.
+
+This is something i'm writing so that I can refer back to it later when I inevitably forget how to do it! But hopefully you found something useful. Feel free to reach out if you have any questions or comments on it. 
+
+Until next time.
