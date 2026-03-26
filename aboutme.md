@@ -4,12 +4,10 @@ title: About me
 <!-- subtitle: --> 
 ---
 
-I'm Tom, currently Head of IT, with a passion for solving real-world problems through the Microsoft tech stack. Over the last few years, I’ve been fortunate to lead a talented team while diving deeper into the power of low-code tools like Microsoft's Power Platform.
+I'm Tom, Head of IT at a telecoms business where I've spent nearly 8 years across a few different roles. Starting out in development, moving into management, and now leading the IT function.
 
-My journey started with technical problem-solving, but over time I found just as much satisfaction in mentoring others and streamlining business systems. Most recently, I've been exploring how Power Platform can transform productivity and unlock solutions for SMB.
+Most of what I do sits somewhere between the technical and the business side of things. I'm not a developer, but I can build things that work and more importantly I care about whether they actually make a difference to the people using them. A lot of my recent focus has been on Power Platform — model driven apps, Power Automate, and increasingly Copilot Studio — finding out what's genuinely possible for small to medium businesses without needing a full development team behind you.
 
-This space is partly my own digital notepad - document and revisit. But more importantly, I hope it's useful for others looking to learn, troubleshoot, or refine their own approach to development.
+Honestly writing isn't really my thing - I'm much more at home building something than writing about it. But this blog exists because I think it's worth doing for my own reference, I write things down so I can find them again. Partly it keeps me honest, if I'm going to write about something it forces me to learn best practices and to make sure it works. And partly I hope it's useful to others in similar roles who are trying to figure out what's possible.
 
-I believe in building solutions that help people develop - not just get things done. Whether it's simplifying a tedious process, creating a new tool, or making documentation or process make more sense, I aim to save people time and empower them to develop their own skills.
-
-If something you read here helps you out or sparks an idea, I’d love to hear about it. Feel free to connect, share, or just say hi.
+You'll also find me at Power Platform community events, mostly learning, occasionally asking questions. If something here is useful, or you're working through something similar, feel free to message me and connect.
